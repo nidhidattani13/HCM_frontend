@@ -234,7 +234,7 @@ const EditAndCheckup = () => {
     const fetchPaymentData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/payment/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/payment/${caseno}`
         );
         const data = await response.json();
 
@@ -280,7 +280,7 @@ const EditAndCheckup = () => {
   const fetchPaymentData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/payment/${caseno}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/payment/${caseno}`
       );
       const data = await response.json();
 
@@ -337,7 +337,7 @@ const EditAndCheckup = () => {
     const fetchLabData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/lab/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}`
         );
         const data = await response.json();
         console.log("Fetched data:", data.data);
@@ -366,7 +366,7 @@ const EditAndCheckup = () => {
   const fetchLabData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/lab/${caseno}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}`
       );
       const data = await response.json();
       console.log("Fetched data:", data.data);
@@ -425,7 +425,7 @@ const EditAndCheckup = () => {
     formData.append("action", "insert_lab");
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         body: formData, // Send the form data directly
@@ -485,7 +485,7 @@ const EditAndCheckup = () => {
   const fetchPrescriptions = async () => {
     try {
       if (!caseno) return;
-      const resp = await fetch(`http://localhost:3000/api/lab/${caseno}/prescriptions`);
+      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}/prescriptions`);
       const json = await resp.json();
       // Accept data array even if server returned status:false (older endpoints sometimes use that)
       if (json && Array.isArray(json.data)) {
@@ -502,7 +502,7 @@ const EditAndCheckup = () => {
   const fetchCheckups = async () => {
     try {
       if (!caseno) return;
-      const resp = await fetch(`http://localhost:3000/api/lab/${caseno}/checkup`);
+      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}/checkup`);
       const json = await resp.json();
       if (json && Array.isArray(json.data)) {
         setCheckupsData(json.data);
@@ -524,7 +524,7 @@ const EditAndCheckup = () => {
   const fetchPatientData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/patients/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/patients/${caseno}`
         );
         const data = await response.json();
         if (data.error) {
@@ -571,7 +571,7 @@ const EditAndCheckup = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:3000/api/action",
+        `${import.meta.env.VITE_API_BASE_URL}/api/action`,
         {
           method: "POST",
           headers: {
@@ -610,7 +610,7 @@ const EditAndCheckup = () => {
     formDataObj.caseno = lastInsertedId;
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -672,7 +672,7 @@ const EditAndCheckup = () => {
     console.log(formDataObj);
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -718,7 +718,7 @@ const EditAndCheckup = () => {
     console.log(formDataObj);
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -762,7 +762,7 @@ const EditAndCheckup = () => {
     formDataObj.caseno = lastInsertedId;
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -804,7 +804,7 @@ const EditAndCheckup = () => {
                   <a
                     className="nav-link left-nav-item back-button border-0 "
                     data-bs-toggle="tab"
-                    href="http://localhost:5173/"
+                    href="/"
                     onClick={handleClick}
                   >
                     <i className="fa-solid fa-arrow-left"></i>

@@ -194,7 +194,7 @@ function Input() {
   }
 
     // Normal behavior: post to action endpoint which performs real insert on the server.
-    const endpoint = "http://localhost:3000/api/action";
+    const endpoint = `${import.meta.env.VITE_API_BASE_URL}/api/action`;
 
     const response = await fetch(endpoint, {
       method: "POST",
@@ -289,7 +289,7 @@ function Input() {
     const fetchPaymentData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/payment/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/payment/${caseno}`
         );
         const data = await response.json();
 
@@ -335,7 +335,7 @@ function Input() {
     const fetchLabData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/lab/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}`
         );
         const data = await response.json();
         console.log("Fetched data:", data.data);
@@ -366,7 +366,7 @@ function Input() {
   const fetchLabData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/lab/${caseno}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}`
       );
       const data = await response.json();
       console.log("Fetched data:", data.data);
@@ -393,7 +393,7 @@ function Input() {
     const fetchLabData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/lab/${caseno}`
+          `${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}`
         );
         const data = await response.json();
         console.log("Fetched data:", data.data);
@@ -422,7 +422,7 @@ function Input() {
   const fetchPaymentData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/payment/${caseno}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/payment/${caseno}`
       );
       const data = await response.json();
 
@@ -482,7 +482,7 @@ function Input() {
     formData.append("action", "insert_lab");
 
     const response = await fetch(
-      "http://localhost:3000/api/action",
+      `${import.meta.env.VITE_API_BASE_URL}/api/action`,
       {
         method: "POST",
         body: formData, // Send the form data directly
@@ -542,7 +542,7 @@ function Input() {
   const fetchPrescriptions = async () => {
     try {
       if (!caseno) return;
-      const resp = await fetch(`http://localhost:3000/api/lab/${caseno}/prescriptions`);
+      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}/prescriptions`);
       const json = await resp.json();
       if (json && Array.isArray(json.data)) setPrescriptionsData(json.data);
       else setPrescriptionsData([]);
@@ -556,7 +556,7 @@ function Input() {
   const fetchCheckups = async () => {
     try {
       if (!caseno) return;
-      const resp = await fetch(`http://localhost:3000/api/lab/${caseno}/checkup`);
+      const resp = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/lab/${caseno}/checkup`);
       const json = await resp.json();
       if (json && Array.isArray(json.data)) setCheckupsData(json.data);
       else setCheckupsData([]);
@@ -592,7 +592,7 @@ function Input() {
     formData.append("caseno", lastInsertedId);
     formData.append("action", "insert_checkup");
 
-    const response = await fetch("http://localhost:3000/api/action", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/action`, {
       method: "POST",
       body: formData,
     });
@@ -648,7 +648,7 @@ function Input() {
     formDataObj.caseno = caseno || l_id;
     console.log(formDataObj);
 
-    const response = await fetch("http://localhost:3000/api/action", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/action`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -690,7 +690,7 @@ function Input() {
 
     formDataObj.caseno = lastInsertedId;
 
-    const response = await fetch("http://localhost:3000/api/action", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/action`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -751,7 +751,7 @@ function Input() {
     console.log(l_id);
     console.log(formDataObj);
 
-    const response = await fetch("http://localhost:3000/api/action", {
+    const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/action`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: formDataObj, action: "update", id: l_id }),

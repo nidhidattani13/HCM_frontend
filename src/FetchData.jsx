@@ -8,7 +8,7 @@ const FetchData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/patients');
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/patients`);
                 if (!response.ok) {
                     throw new Error(`Failed to fetch data: ${response.statusText}`);
                 }

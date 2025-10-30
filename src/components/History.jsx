@@ -8,7 +8,7 @@ const History = ({ caseno }) => {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/patients/${caseno}/history`);
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/patients/${caseno}/history`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch history data');
                 }
